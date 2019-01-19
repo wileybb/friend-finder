@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add A New Friend Profile</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="jumbotron">
+      <h1>New Friend Profile</h1>
+      <h3> Please answer the following questions about yourself:</h3>
+      <hr>
+      <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Friends</button></a>
+    </div>
+    <div class="row">
+
+      <div class="col-12">
+
+        <div class="card">
+          <div class="card-header">
+            <h3><strong>Add Profile</strong></h3>
+          </div>
+          <div class="card-body">
+            <form method="POST" role="form">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input type="text" class="form-control" id="age">
+              </div>
+
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <input type="text" class="form-control" id="gender">
+              </div>
+
+              <div class="form-group">
+                <label for="cool-points">How Cool are you? (1-10)</label>
+                <input type="text" class="form-control" id="cool-points">
+              </div>
+
+              <div class="form-group">
+                <label for="hot-points">How Hot are you? (1-10)</label>
+                <input type="text" class="form-control" id="hot-points">
+              </div>
+
+              <div class="form-group">
+                <label for="pet-points">Are you into pets? (1-10)</label>
+                <input type="text" class="form-control" id="pet-points">
+              </div>
+
+              <div class="form-group">
+                <label for="going-out-points">How often do you like going out on the town? (1-10)</label>
+                <input type="text" class="form-control" id="going-out-points">
+              </div>
+
+              <div class="form-group">
+                <label for="out-door-points">How much do you like being in the great out-doors? (1-10)</label>
+                <input type="text" class="form-control" id="out-door-points">
+              </div>
+
+              
+
+            </form>
+            <br>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span> Submit </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // Question: What does this code do?
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var newProfile = {
+        name: $("#name").val().trim(),
+        age: $("#age").val().trim(),
+        gender: $("#gender").val().trim(),
+        coolness: $("#cool-points").val().trim(),
+        hotness: $("#hot-points").val().trim(),
+        pets: $("#pet-points").val().trim(),
+        going_out: $("#going-out-points").val().trim(),
+        out_doors: $("#out-doors-points").val().trim(),
+      };
+
+
+      // Question: What does this code do??
+      $.post("/api/characters", newProfile)
+        .then(function(data) {
+          console.log("add.html", data);
+          alert("Adding character...");
+        });
+    });
+  </script>
+
+</body>
+</html>
